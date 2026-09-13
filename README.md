@@ -73,11 +73,9 @@ It will store:
 
 ### WebSocket
 
-WebSocket will be used to provide real-time communication between users.
+WebSocket will be used to push real-time updates to students viewing a study session.
 
-Students participating in the same study session will be able to use a live chat. When one student sends a message, the backend will immediately send the message to the other connected users without requiring them to refresh the page.
-
-WebSocket will also allow the application to provide real-time updates when users join or leave study sessions.
+When a student RSVPs as going or not going, or posts a comment, the backend will immediately broadcast that update to everyone else currently viewing the session. This means the attendee list and comment thread stay current for all participants without anyone needing to refresh the page.
 
 ## Design
 

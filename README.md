@@ -53,22 +53,21 @@ Example endpoints include:
 - `POST /api/study-sessions/:id/comments` — Post a comment on a study session
 
 The backend will also handle authentication so that users must be logged in to access their personal information.
-### Third-Party API
 
+### Third-Party API
 StudyBuddy will use the Quotable API to provide motivational quotes to students on the application dashboard. This will give users an optional source of motivation while studying.
 
 [Quotable API](https://github.com/lukePeavey/quotable)
 
 ### Database
-
 The database will store the information needed for StudyBuddy to function and keep information persistent between sessions.
 
 It will store:
-
 - User authentication information
 - User profiles
 - Study sessions
-- Study-session participants
+- Study-session participants and their RSVP status (going / not going)
+- Comments left on study sessions
 - Assignments
 - Shared study resources
 

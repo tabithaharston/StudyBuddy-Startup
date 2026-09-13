@@ -1,7 +1,14 @@
 # StudyBuddy
+## Deliverable Notes — Startup Specification
+For this deliverable I completed the initial startup specification, including:
+- Elevator pitch
+- List of key features
+- Description of how each required technology (HTML, CSS, React, Web Service, Database, WebSocket) will be used
+- Link to the third-party API I plan to use (Quotable API)
+- Rough wireframe sketches for the Login, Dashboard, and Study Session screens
 
 ## Elevator Pitch
-StudyBuddy is a social media site that allows students to study and prepare for their courses within their assigned classes. It will be distributed by the professor to allow students in their class to create study groups to help prepare. Thies webistes helps student leave onlebsite Application designed to help college students stay organized and study more effectively. Students will be able to create and join study sessions, share study resources, and get out of the virtual world and into the real world. StudyBuddy equips students with the tools they need to stay organized and connected in one simple application.
+StudyBuddy is a social platform that helps BYU college students organize and stay accountable for their coursework together. Professors can share access with their class, letting students form study groups, schedule sessions, and share resources all in one place. Instead of scattering plans across group chats and email threads, students get a single hub to find study partners, post materials, and stay connected — both online and in person. StudyBuddy makes collaborative studying easier to start and easier to stick with.
 
 ## Key Features
 - Professor registration and login

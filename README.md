@@ -91,5 +91,4 @@ The dashboard will provide users with an overview of their upcoming study sessio
 
 ### Study Session
 
-The study session screen will show information about the session, participants, and a real-time chat where students can communicate.
-
+The study session screen will show information about the session (time, location, duration), a list of participants and their RSVP status, and a comment section where students can post updates or questions in real time.

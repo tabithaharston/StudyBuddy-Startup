@@ -48,9 +48,11 @@ Example endpoints include:
 - `POST /api/study-sessions/:id/join` — Join a study session
 - `GET /api/assignments` — Retrieve a user's assignments
 - `POST /api/assignments` — Create an assignment
+- `POST /api/study-sessions/:id/rsvp` — Mark a user as going or not going to a session
+- `GET /api/study-sessions/:id/comments` — Retrieve comments for a study session
+- `POST /api/study-sessions/:id/comments` — Post a comment on a study session
 
 The backend will also handle authentication so that users must be logged in to access their personal information.
-
 ### Third-Party API
 
 StudyBuddy will use the Quotable API to provide motivational quotes to students on the application dashboard. This will give users an optional source of motivation while studying.

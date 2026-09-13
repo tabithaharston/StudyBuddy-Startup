@@ -14,10 +14,10 @@ StudyBuddy is a social platform that helps BYU college students organize and sta
 - Professor registration and login
 - Student registration and login
 - Personal student dashboard
-- Create and join Study session group
+- Create and join Study session groups
 - View upcoming study sessions
-- Bulleton board where students can upload material
-- Connect with people in person
+- Bulletin board where students can upload material
+- Connect with study partners in person
 
   ## Technologies
 ### HTML
@@ -30,9 +30,9 @@ CSS will be used to style the StudyBuddy application and make it easy to use on 
 
 ### React
 
-React will be used to build the frontend of StudyBuddy using reusable components. Components will include the login form, navigation bar, study session cards, assignment cards, user profiles, and live chat.
+React will be used to build the frontend of StudyBuddy using reusable components. Components will include the login form, navigation bar, study session cards, assignment cards, user profiles, and a comment/RSVP panel for each study session.
 
-React routing will allow users to move between different parts of the application. React state will also allow the interface to update when users create or join study sessions, add assignments, or receive messages.
+The RSVP panel will let students mark whether they're going or not going to a session, and leave comments visible to other participants. React Router will handle navigation between the dashboard, study sessions, and profile views. React state will also allow the interface to update reactively when users create or join study sessions, add assignments, post comments, or update their RSVP status.
 
 ### Web Service
 

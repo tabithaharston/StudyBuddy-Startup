@@ -82,13 +82,19 @@ When a student RSVPs as going or not going, or posts a comment, the backend will
 The following wireframes show the planned design and layout of the StudyBuddy application.
 
 ### Login
+<img width="557" height="416" alt="Login" src="https://github.com/user-attachments/assets/ed27d129-cf01-4f58-aaf7-87f48eb3fbb3" />
+
 
 The login screen will allow existing users to enter their email and password and access their StudyBuddy account.
 
 ### Dashboard
+<img width="554" height="413" alt="Dashboard" src="https://github.com/user-attachments/assets/794a1ed1-606f-49dd-8d46-3c52b9cf91be" />)
+
 
 The dashboard will provide users with an overview of their upcoming study sessions and allow them to create or join a study session.
 
 ### Study Session
+<img width="557" height="413" alt="Session" src="https://github.com/user-attachments/assets/cb332323-12d3-4797-8708-2c8867c19056" />
+
 
 The study session screen will show information about the session (time, location, duration), a list of participants and their RSVP status, and a comment section where students can post updates or questions in real time.

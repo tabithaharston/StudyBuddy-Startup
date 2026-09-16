@@ -1,4 +1,32 @@
 # StudyBuddy
+## Deliverable Notes — Startup AWS
+
+For this deliverable I set up my AWS web server and connected it to a domain name with HTTPS.
+
+### What I did
+
+- Created an AWS account using my byu.edu email
+- Launched an EC2 instance (t3.nano) using the class AMI
+- Allocated an IP address so my server keeps the same public IP even if it restarts
+- Registered the domain `studybuddy.click` 
+- Set up DNS records in Route 53 pointing `studybuddy.click` and `startup.studybuddy.click` to my server's IP address
+- SSH'd into my server and edited the Caddyfile to configure HTTPS for my domain
+- Restarted the Caddy service and confirmed my site loads securely at https://startup.studybuddy.click
+
+### Things I ran into / learned
+
+- Typing just the IP address into Chrome defaults to HTTPS now, so I got an SSL error before I even had a web server running — had to type `http://` explicitly to test plain HTTP access.
+- DNS took a little while to propagate after registering my domain — using `nslookup` in PowerShell was the easiest way to check if it had gone through yet, instead of just guessing from the browser error.
+- Caddy failed to restart the first time because I was missing a space before the `{` on one of my Caddyfile blocks (`studybuddy.click{` instead of `studybuddy.click {`). 
+- `vi` takes some getting used to — you have to press `i` to actually type anything, then `Esc` followed by `:wq` to save and exit. I kept forgetting this at first.
+
+### Useful commands I want to remember
+
+```
+ssh -i [key pair file] ubuntu@studybuddy.click
+sudo systemctl restart caddy.service
+sudo systemctl status caddy.service
+```
 ## Deliverable Notes — Startup Specification
 For this deliverable I completed the initial startup specification, including:
 - Elevator pitch
@@ -98,3 +126,6 @@ The dashboard will provide users with an overview of their upcoming study sessio
 
 
 The study session screen will show information about the session (time, location, duration), a list of participants and their RSVP status, and a comment section where students can post updates or questions in real time.
+
+
+

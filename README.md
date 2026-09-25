@@ -1,4 +1,19 @@
 # StudyBuddy
+## Startup HTML Deliverable
+
+I built three HTML pages for StudyBuddy.
+
+- Pages: index.html, dashboard.html, session.html
+- Uses header, nav, main, section, and footer tags
+- Pages link to each other with a nav bar
+- Has real text describing the app
+- Has a placeholder for a 3rd-party quote API
+- Has images
+- Has a login placeholder that shows the user's name
+- Has tables showing session and participant data
+- Has placeholders for real-time updates
+- My name and GitHub link are on every page
+
 ## Deliverable Notes — Startup AWS
 
 For this deliverable I set up my AWS web server and connected it to a domain name with HTTPS.

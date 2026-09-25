@@ -25,6 +25,7 @@
     <section>
       <h2>Your Upcoming Study Sessions</h2>
       <!-- Database data placeholder: study sessions the user has joined -->
+      <!-- TODO: Replace sample sessions with database data -->
       <table>
         <tr>
           <th>Course</th>
@@ -53,4 +54,27 @@
       </table>
     </section>
 
-    
+    <!-- Form for creating a new study session -->
+    <section>
+      <h2>Create a Study Session</h2>
+      <form action="#" method="post">
+        <label for="courseName">Course:</label>
+        <input type="text" id="courseName" name="courseName" placeholder="e.g. CS 260" required />
+
+        <label for="sessionDate">Date:</label>
+        <input type="date" id="sessionDate" name="sessionDate" required />
+
+        <label for="sessionTime">Time:</label>
+        <input type="time" id="sessionTime" name="sessionTime" required />
+
+        <label for="sessionLocation">Location:</label>
+        <input type="text" id="sessionLocation" name="sessionLocation" placeholder="e.g. HBLL Room 3102" />
+
+        <button type="submit">Create Session</button>
+      </form>
+    </section>
+
+    <!-- Available study sessions to join -->
+    <!-- Shared study resources -->
+    <!-- Real-time activity updates -->
+    <!-- Footer -->

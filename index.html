@@ -49,4 +49,24 @@
         </fieldset>
       </form>
 
-      
+      <form action="#" method="post">
+        <fieldset>
+          <legend>Create Account</legend>
+          <label for="signupName">Full Name:</label>
+          <input type="text" id="signupName" name="signupName" placeholder="Jane Doe" required />
+
+          <label for="signupEmail">Email:</label>
+          <input type="email" id="signupEmail" name="signupEmail" required />
+
+          <label for="signupPassword">Password:</label>
+          <input type="password" id="signupPassword" name="signupPassword" required />
+
+          <label for="signupRole">I am a:</label>
+          <select id="signupRole" name="signupRole">
+            <option value="student">Student</option>
+            <option value="professor">Professor</option>
+          </select>
+
+          <button type="submit">Create Account</button>
+        </fieldset>
+      </form>

@@ -24,5 +24,12 @@ header {
   margin-bottom: 1em;
   ]
 
-  
+  h1, h2 {
+    color: #2a5ccb;
+  }
+
+  #userName {
+    font-weight: 600;
+    color: #2a5ccb;
+  }
   

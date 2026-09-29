@@ -56,4 +56,9 @@ header {
     grid-column: 1 / -1;
   }
 
+  section {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 0.5em;
+  }
   

@@ -22,7 +22,7 @@ header {
   border-bottom: 3px solid #2a5cbb;
   padding: 1em 0;
   margin-bottom: 1em;
-  ]
+}
 
   h1, h2 {
     color: #2a5ccb;
@@ -36,7 +36,7 @@ header {
   nav ul {
     list-style: none;
     display: flex;
-    gam: 1em;
+    gap: 1em;
     padding: 0;
   }
 

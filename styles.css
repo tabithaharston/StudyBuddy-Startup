@@ -32,4 +32,18 @@ header {
     font-weight: 600;
     color: #2a5ccb;
   }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gam: 1em;
+    padding: 0;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #2a5cbb;
+    font-weight: bold;
+  }
+
   

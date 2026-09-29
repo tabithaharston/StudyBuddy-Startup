@@ -56,10 +56,13 @@ header {
     grid-column: 1 / -1;
   }
 
+  /* Section boxes */
   section {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 0.5em;
+    border: 1px solid #eee;
+    padding: 1em;
+    margin-bottom: 1.5em;
+    border-radius:6px;
+    background-color: #fafbff;
   }
   
   table {

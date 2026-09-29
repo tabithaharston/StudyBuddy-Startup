@@ -1,4 +1,18 @@
 # StudyBuddy
+## 🚀 CSS deliverable
+
+For this deliverable I styled the application into its final appearance.
+
+- [x] **Imported font** - Poppins is imported from Google Fonts with `@import` and applied to all elements.
+- [x] **Page layout with flexbox** - `body` uses `display: flex` with `flex-direction: column` and `min-height: 100vh`, and `main` uses `flex: 1` so the footer stays at the bottom of the window.
+- [x] **Header styling** - The header has a blue accent border and spacing.
+- [x] **Heading colors** - `h1` and `h2` use the app's blue accent color.
+- [x] **ID selector** - `#userName` styles the logged-in user's name in the header.
+- [ ] **CSS framework** - Bootstrap
+- [ ] **Navigation elements**
+- [ ] **Application elements** (tables, forms, buttons, sections)
+- [ ] **Class and pseudo selectors**
+- [ ] **Responsive to window resizing** - grid layout and media queries
 ## Startup HTML Deliverable
 
 I built three HTML pages for StudyBuddy.

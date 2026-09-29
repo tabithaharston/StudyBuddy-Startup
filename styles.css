@@ -94,7 +94,11 @@ input, select, textarea {
   max-width: 300px;
 }
 
-
+button {
+  margin-top: 0.75em;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
 
   footer {
   border-top: 2px solid #ccc;

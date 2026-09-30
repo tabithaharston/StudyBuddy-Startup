@@ -44,7 +44,7 @@ header {
     text-decoration: none;
     color: #2a5cbb;
     font-weight: bold;
-  }
+}
 
   nav a:hover {
   text-decoration: underline;
@@ -55,11 +55,11 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1em;
-  }
+}
 
   .wide {
     grid-column: 1 / -1;
-  }
+}
 
   /* Section boxes */
   section {
@@ -68,8 +68,14 @@ header {
     margin-bottom: 1.5em;
     border-radius:6px;
     background-color: #fafbff;
-  }
-  
+}
+
+  img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
   table {
   border-collapse: collapse;
   width: 100%;

@@ -46,6 +46,11 @@ header {
     font-weight: bold;
   }
 
+  nav a:hover {
+  text-decoration: underline;
+  color: #1b3f86;
+}
+
   .dashboard{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

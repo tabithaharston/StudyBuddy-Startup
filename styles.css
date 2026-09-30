@@ -76,6 +76,14 @@ header {
   border-radius: 6px;
 }
 
+.welcome-image {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  margin-top: 1em;
+}
+
   blockquote {
   border-left: 4px solid #2a5cbb;
   padding-left: 1em;

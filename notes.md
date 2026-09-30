@@ -8,22 +8,21 @@
 - Specificity goes element < class < ID.
 - Selector types: element (`header`), class (`.dashboard`), ID (`#userName`), pseudo (`:hover`, `:nth-child`), attribute (`input[type="radio"]`).
 - Combinators: space = any descendant, `>` = direct child, `+` = next sibling, `~` = any later sibling.
-
-### Still to add to styles.css
-- [ ] Nav styles: `nav ul` as a flex row, bold blue links with no underline
-- [ ] Section boxes: border, padding, rounded corners
-- [ ] Table styles: full width, cell borders, padding
-- [ ] Form styles: labels on their own line, inputs capped at 300px
-- [ ] Button styles: spacing and `cursor: pointer`
-- [ ] Footer styles: top border, smaller gray text
-- [ ] Pseudo selectors: `nav a:hover`, `button:hover`, `tr:nth-child(even)`
-- [ ] Class selectors: `.dashboard` grid and `.wide` full-width section
-- [ ] Media query for screens under 600px: stack nav, shrink table text, full-width inputs
-
-### Still to add to the HTML
-- [ ] Bootstrap `<link>` in every page's `<head>`, above `styles.css`
-- [ ] Bootstrap classes: `table table-striped`, `btn btn-primary`, `form-control`
-- [ ] `<main class="dashboard">` and `class="wide"` on the sessions table section
+### Layout
+- Flexbox page: `body { display: flex; flex-direction: column; min-height: 100vh; }` plus `main { flex: 1; }` keeps the footer at the bottom.
+- Grid: `repeat(auto-fit, minmax(300px, 1fr))` makes cards wrap on their own as the window shrinks.
+- Media queries like `@media (max-width: 600px) { ... }` apply CSS only on small screens.
+- Test phone sizes in dev tools: F12, then the phone icon.
+### Images
+- `img { max-width: 100%; }` stops images from overflowing on phones.
+- A `width="500"` in the HTML locks an image's size. Remove it and size the image in CSS instead.
+- `width: 100%` plus `object-fit: cover` makes a full-width banner without squishing the photo.
+### Deploying
+- Saving only changes my laptop. `git push` updates GitHub. The deploy script updates the live site.
+- `127.0.0.1:5500` is Live Server on my computer only. Never submit it.
+- After deploying, hard-refresh with Ctrl + Shift + R.
+- Run the deploy script from inside the project folder, since it copies everything in that folder.
+- Deploy using `startup.studybuddy.click` as the host, because `studybuddy.click` alone doesn't resolve.
 
 ## Deliverable Notes — Startup HTML
 ### What I did

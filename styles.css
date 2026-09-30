@@ -153,3 +153,10 @@ button:hover {
   font-size: 0.9em;
   color: #555;
 }
+
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    gap: 0.25em;
+  }
+

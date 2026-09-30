@@ -1,20 +1,21 @@
 # StudyBuddy
 ## 🚀 CSS deliverable
+I styled StudyBuddy using my own CSS (`styles.css`) and the Bootstrap framework. My name and a link to this repository are on every page.
 
-For this deliverable I styled the application into its final appearance.
+- [x] **Visually appealing, no overflow** - One blue accent color is used for headings, links, and borders, and every section is a card with rounded corners. Images use `max-width: 100%`, and I tested each page at phone size in dev tools so nothing scrolls sideways.
+- [x] **CSS framework** - Bootstrap is linked on every page. The dashboard uses Bootstrap's `table-striped`, `form-control`, and `btn` classes.
+- [x] **All visual elements styled** - The header, nav, sections, tables, forms, buttons, quote, banner image, and footer all have CSS styling.
+- [x] **Responsive (flexbox and grid)** - The page is a flexbox column so the footer stays at the bottom. The dashboard uses a grid, so the cards wrap as the window gets smaller. A media query stacks the nav and shrinks the banner on phones.
+- [x] **Imported font** - Poppins, imported from Google Fonts.
+- [x] **Selectors** - Element (`header`, `table`), class (`.dashboard`, `.welcome-image`), ID (`#userName`), and pseudo (`:hover`, `:nth-child`).
+- [x] **Deployed** - Startup at https://startup.studybuddy.click and Simon CSS at https://simon.studybuddy.click.
 
-- [x] **Imported font** - Poppins is imported from Google Fonts with `@import` and applied to all elements.
-- [x] **Page layout with flexbox** - `body` uses `display: flex` with `flex-direction: column` and `min-height: 100vh`, and `main` uses `flex: 1` so the footer stays at the bottom of the window.
-- [x] **Header styling** - The header has a blue accent border and spacing.
-- [x] **Heading colors** - `h1` and `h2` use the app's blue accent color.
-- [x] **ID selector** - `#userName` styles the logged-in user's name in the header.
-- [ ] **CSS framework** - Bootstrap
-- [ ] **Navigation elements**
-- [ ] **Application elements** (tables, forms, buttons, sections)
-- [ ] **Class and pseudo selectors**
-- [ ] **Responsive to window resizing** - grid layout and media queries
+### What I learned
+- Order matters in CSS. My stylesheet goes after Bootstrap, and media queries go at the bottom, so they win.
+- Grid with `auto-fit` makes a layout responsive without writing a rule for every screen size.
+- Saving, pushing, and deploying are three separate steps. My live site only updates when I deploy.
+
 ## Startup HTML Deliverable
-
 I built three HTML pages for StudyBuddy.
 
 - Pages: index.html, dashboard.html, session.html

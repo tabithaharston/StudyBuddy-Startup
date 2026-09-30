@@ -160,3 +160,16 @@ button:hover {
     gap: 0.25em;
   }
 
+  table {
+    font-size: 0.85em;
+  }
+
+  input, select, textarea {
+    max-width: 100%;
+  }
+
+  .welcome-image {
+    height: 200px;
+  }
+}
+

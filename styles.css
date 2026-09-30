@@ -86,22 +86,26 @@ header {
   border-collapse: collapse;
   width: 100%;
   margin-top: 0.5em;
-}
+  }
 
   th, td {
   border: 1px solid #ddd;
   padding: 0.5em;
   text-align: left;
-}
+  }
 
-form {
-  margin-top: 1em;
-}
+  tr:nth-child(even) {
+    background-color: #f1f4fb;
+  }
 
-label {
-  display: block;
-  margin-top: 0.5em;
-}
+  form {
+    margin-top: 1em;
+  }
+
+  label {
+    display: block;
+    margin-top: 0.5em;
+  }
 
 input, select, textarea {
   display: block;

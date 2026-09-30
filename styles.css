@@ -76,6 +76,12 @@ header {
   border-radius: 6px;
 }
 
+  blockquote {
+  border-left: 4px solid #2a5cbb;
+  padding-left: 1em;
+  font-style: italic;
+}
+  
   table {
   border-collapse: collapse;
   width: 100%;

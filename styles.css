@@ -102,6 +102,13 @@ header {
     margin-top: 1em;
   }
 
+  fieldset {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1em;
+    margin-bottom: 1em;
+  }
+    
   label {
     display: block;
     margin-top: 0.5em;

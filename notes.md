@@ -23,6 +23,13 @@
 - After deploying, hard-refresh with Ctrl + Shift + R.
 - Run the deploy script from inside the project folder, since it copies everything in that folder.
 - Deploy using `startup.studybuddy.click` as the host, because `studybuddy.click` alone doesn't resolve.
+### Still to do
+- [ ] Replace the random picsum photo with a real study photo
+- [ ] Add Bootstrap classes to `index.html` and `session.html`
+### Deploy command
+```
+./deployFiles.sh -k /c/Users/tabby/Documents/production.pem -h startup.studybuddy.click -s startup
+```
 
 ## Deliverable Notes — Startup HTML
 ### What I did

@@ -1,4 +1,17 @@
 "I love web programming"
+## React Phase 1: Routing
+### What I learned
+- React apps only have ONE HTML page. React swaps the content inside `<div id="root">`.
+- The header and footer go in `app.jsx` once instead of on every page.
+- Each page is its own component in its own folder with its own CSS.
+- In React, `class` becomes `className` and `for` becomes `htmlFor`.
+- `NavLink` replaces `<a href>` so pages switch without reloading.
+### Things I ran into
+- I had to run `npm install` before `npm run dev` would work.
+- `node_modules` needs to be in `.gitignore`.
+- If I typed `.html` in the URL, I saw my old page instead of the React one.
+### Deploy command
+`bash deployReact.sh -k /c/Users/tabby/Documents/production.pem -h startup.studybuddy.click -s startup`
 
 ## CSS
 ### What I learned

@@ -1,0 +1,13 @@
+.welcome-image {
+  display: block;
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  margin-top: 1em;
+}
+
+@media (max-width: 600px) {
+  .welcome-image {
+    height: 200px;
+  }
+}

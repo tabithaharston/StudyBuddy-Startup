@@ -1,4 +1,18 @@
 # StudyBuddy
+## 🚀 React Phase 1: Routing deliverable
+I converted StudyBuddy from three separate HTML pages into a single-page React app built with Vite. My name and a link to this GitHub repository are in the footer on every page.
+
+- [x] **Simon React P1 deployed** - Simon is ported to React with routing and live at https://simon.studybuddy.click.
+- [x] **Bundled using Vite** - I installed Vite, React, React Router, and Bootstrap with npm. `npm run dev` runs the app locally, and `deployReact.sh` runs `npm run build` to bundle it before uploading to my server.
+- [x] **Multiple React components with my HTML and CSS** - Each page is its own component in its own folder:
+  - `src/login/login.jsx` + `login.css` (welcome image styles)
+  - `src/dashboard/dashboard.jsx` + `dashboard.css` (grid layout)
+  - `src/session/session.jsx` + `session.css` (radio button styles)
+  - `src/app.jsx` holds the shared header, nav, and footer, and `src/app.css` holds the shared styles.
+  - I converted the HTML to JSX (`class` → `className`, `for` → `htmlFor`, self-closing tags, `{/* */}` comments) and added `<thead>`/`<tbody>` to my tables.
+- [x] **React router** - `app.jsx` uses `BrowserRouter`, `Routes`, and `Route` to show Login at `/`, Dashboard at `/dashboard`, and Study Session at `/session`. The nav uses `NavLink`, and any unknown URL shows a 404 component. The course links in the dashboard table also use `NavLink` to go to the session page.
+- [x] **Deployed** - Live at https://startup.studybuddy.click.
+
 ## 🚀 CSS deliverable
 I styled StudyBuddy using my own CSS (`styles.css`) and the Bootstrap framework. My name and a link to this repository are on every page.
 

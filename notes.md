@@ -1,4 +1,17 @@
 "I love web programming"
+
+## Simon React P2: Reactivity
+
+- `useState` holds values. When they change, the component re-renders.
+- `useEffect` runs code after render. With `[]` it runs once on load, which is good for fetching data.
+- Lifting state up: login state lives in `App`. Login updates it through an `onAuthChange` callback.
+- `{condition && <Component />}` shows a component only when the condition is true.
+- Scores are saved in localStorage for now. Fake player scores come from a `setInterval` until WebSocket is added.
+- Run with `npm run dev`, not Live Server. Stop it with Ctrl+C.
+- Deploy: `./deployReact.sh -k <pem> -h <domain or IP> -s simon`. It builds with Vite and copies `dist` to the server.
+- If the site times out, check that the EC2 instance is running and the DNS points to the right IP.
+- If git push is rejected, run `git pull` first.
+
 ## React Phase 1: Routing
 ### What I learned
 - React apps only have ONE HTML page. React swaps the content inside `<div id="root">`.

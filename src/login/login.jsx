@@ -1,8 +1,7 @@
 import React from 'react';
 import './login.css';
 
-export function Login() {
-  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+export function Login({ userName, onLogin, onLogout }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [fullName, setFullName] = React.useState('');
@@ -11,14 +10,14 @@ export function Login() {
   function handleLogin(e) {
     e.preventDefault();
     localStorage.setItem('userName', email);
-    setUserName(email);
+    onLogin(email);
   }
 
-    function handleCreate(e) {
+  function handleCreate(e) {
     e.preventDefault();
     localStorage.setItem('userName', fullName);
     localStorage.setItem('role', role);
-    setUserName(fullName);
+    onLogin(fullName);
   }
 
   return (
@@ -69,7 +68,7 @@ export function Login() {
             <input type="password" id="signupPassword" name="signupPassword" required />
 
             <label htmlFor="signupRole">I am a:</label>
-              <select id="signupRole" name="signupRole" value={role} onChange={(e) => setRole(e.target.value)}>
+            <select id="signupRole" name="signupRole" value={role} onChange={(e) => setRole(e.target.value)}>
               <option value="student">Student</option>
               <option value="professor">Professor</option>
             </select>
@@ -79,7 +78,7 @@ export function Login() {
         </form>
 
         {/* Displays the logged-in user's name once authentication is implemented */}
-      <p id="userDisplay">Logged in as: <span id="userName">{userName || 'Guest'}</span></p>
+        {userName && <button type="button" onClick={onLogout}>Logout</button>}
       </section>
 
       <section>

@@ -5,11 +5,20 @@ export function Login() {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [fullName, setFullName] = React.useState('');
+  const [role, setRole] = React.useState('student');
 
   function handleLogin(e) {
     e.preventDefault();
     localStorage.setItem('userName', email);
     setUserName(email);
+  }
+
+    function handleCreate(e) {
+    e.preventDefault();
+    localStorage.setItem('userName', fullName);
+    localStorage.setItem('role', role);
+    setUserName(fullName);
   }
 
   return (
@@ -46,11 +55,12 @@ export function Login() {
         </form>
 
         {/* Create Account */}
-        <form>
+        <form onSubmit={handleCreate}>
           <fieldset>
             <legend>Create Account</legend>
             <label htmlFor="signupName">Full Name:</label>
-            <input type="text" id="signupName" name="signupName" placeholder="Jane Doe" required />
+            <input type="text" id="signupName" name="signupName" placeholder="Jane Doe" required
+              value={fullName} onChange={(e) => setFullName(e.target.value)} />
 
             <label htmlFor="signupEmail">Email:</label>
             <input type="email" id="signupEmail" name="signupEmail" required />
@@ -59,7 +69,7 @@ export function Login() {
             <input type="password" id="signupPassword" name="signupPassword" required />
 
             <label htmlFor="signupRole">I am a:</label>
-            <select id="signupRole" name="signupRole">
+              <select id="signupRole" name="signupRole" value={role} onChange={(e) => setRole(e.target.value)}>
               <option value="student">Student</option>
               <option value="professor">Professor</option>
             </select>

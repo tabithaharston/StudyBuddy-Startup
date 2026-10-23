@@ -8,6 +8,9 @@ export function Session() {
       { name: 'Sam R.', status: 'Not going' },
     ]
   );
+
+  const [rsvp, setRsvp] = React.useState('');
+  
   return (
     <main>
       <section>
@@ -39,8 +42,8 @@ export function Session() {
         <form>
           <label htmlFor="rsvpYes">Going?</label>
           <input type="radio" id="rsvpYes" name="rsvp" /> Yes
-          <input type="radio" id="rsvpNo" name="rsvp" /> No
-          <button type="submit">Submit</button>
+          <input type="radio" id="rsvpYes" name="rsvp" checked={rsvp === 'Going'} onChange={() => setRsvp('Going')} /> Yes
+          <input type="radio" id="rsvpNo" name="rsvp" checked={rsvp === 'Not going'} onChange={() => setRsvp('Not going')} /> No
         </form>
       </section>
 

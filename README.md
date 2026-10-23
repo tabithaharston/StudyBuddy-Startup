@@ -1,4 +1,15 @@
 # StudyBuddy
+## 🚀 React Phase 2: Reactivity deliverable
+StudyBuddy now works in the browser. Features that need the backend, database, or WebSocket are mocked for now.
+- [x] **Simon React P2 deployed** - https://simon.studybuddy.click
+- [x] **All features work or are MOCKED**
+  - Login, Create Account, and Logout work. Dashboard and Study Session only show when logged in.
+  - Dashboard: create and join sessions, and upload files to the bulletin board.
+  - Study Session: RSVP updates the participants table, and you can post comments.
+  - Mocks: localStorage for the database, a hard-coded quote for the Quotable API, and `setInterval` for WebSocket live updates.
+- [x] **useState and useEffect** - `useState` holds the user, form inputs, and all lists. `useEffect` loads the quote and runs the Live Updates timer.
+- [x] **Deployed** - https://startup.studybuddy.click
+
 ## 🚀 React Phase 1: Routing deliverable
 I converted StudyBuddy from three separate HTML pages into a single-page React app built with Vite. My name and a link to this GitHub repository are in the footer on every page.
 

@@ -28,6 +28,24 @@ export function Dashboard() {
     setLocation('');
   }
 
+  const [openSessions, setOpenSessions] = React.useState(
+    JSON.parse(localStorage.getItem('openSessions')) || [
+      { id: 101, course: 'Chem 106 Lab Prep', date: '2026-10-30', time: '17:00', location: 'Benson 150' },
+      { id: 102, course: 'Stats 221 Homework Help', date: '2026-11-01', time: '15:00', location: 'TMCB 1170' },
+      { id: 103, course: 'English 251 Essay Workshop', date: '2026-11-02', time: '13:00', location: 'JFSB B192' },
+    ]
+  );
+
+  function joinSession(session) {
+    const newSessions = [...sessions, session];
+    setSessions(newSessions);
+    localStorage.setItem('sessions', JSON.stringify(newSessions));
+
+    const newOpen = openSessions.filter((s) => s.id !== session.id);
+    setOpenSessions(newOpen);
+    localStorage.setItem('openSessions', JSON.stringify(newOpen));
+  }
+
   return (
     <main className="dashboard">
       <section className="wide">
@@ -75,15 +93,22 @@ export function Dashboard() {
         </form>
       </section>
 
-      {/* Available study sessions to join */}
+      {/* Available study sessions to JOIN */}
       <section>
         <h2>Join a Study Session</h2>
         {/* Database data placeholder: all open sessions available to join */}
-        <ul>
-          <li>Chem 106 Lab Prep — Sep 30, 5:00 PM — <button type="button" className="btn btn-sm btn-success">Join</button></li>
-          <li>Stats 221 Homework Help — Oct 1, 3:00 PM — <button type="button" className="btn btn-sm btn-success">Join</button></li>
-          <li>English 251 Essay Workshop — Oct 2, 1:00 PM — <button type="button" className="btn btn-sm btn-success">Join</button></li>
-        </ul>
+        {openSessions.length === 0 ? (
+          <p>You've joined every open session!</p>
+        ) : (
+          <ul>
+            {openSessions.map((s) => (
+              <li key={s.id}>
+                {s.course} — {s.date}, {s.time}{' '}
+                <button type="button" className="btn btn-sm btn-success" onClick={() => joinSession(s)}>Join</button>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
       <section>

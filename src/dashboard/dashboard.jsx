@@ -64,6 +64,9 @@ export function Dashboard() {
     e.target.reset();
   }
 
+  /* Live Updates */
+  const [liveUpdates, setLiveUpdates] = React.useState([]);
+
   return (
     <main className="dashboard">
       <section className="wide">
@@ -149,7 +152,15 @@ export function Dashboard() {
       {/* Real-time activity updates */}
       <section>
         <h2>Live Updates</h2>
-        <p id="liveActivity">Real-time updates will show here.</p>
+        {liveUpdates.length === 0 ? (
+          <p id="liveActivity">Waiting for activity...</p>
+        ) : (
+          <ul id="liveActivity">
+            {liveUpdates.map((msg, i) => (
+              <li key={i}>{msg}</li>
+            ))}
+          </ul>
+        )}
       </section>
     </main>
   );

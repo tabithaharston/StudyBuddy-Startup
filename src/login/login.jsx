@@ -2,6 +2,16 @@ import React from 'react';
 import './login.css';
 
 export function Login() {
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  function handleLogin(e) {
+    e.preventDefault();
+    localStorage.setItem('userName', email);
+    setUserName(email);
+  }
+
   return (
     <main>
       <section>
@@ -20,14 +30,16 @@ export function Login() {
       <section>
         <h2>Login / Create Account</h2>
         {/* Authentication placeholder */}
-        <form>
+        <form onSubmit={handleLogin}>
           <fieldset>
             <legend>Login</legend>
             <label htmlFor="loginEmail">Email:</label>
-            <input type="email" id="loginEmail" name="loginEmail" placeholder="you@byu.edu" required />
+            <input type="email" id="loginEmail" name="loginEmail" placeholder="you@byu.edu" required
+              value={email} onChange={(e) => setEmail(e.target.value)} />
 
             <label htmlFor="loginPassword">Password:</label>
-            <input type="password" id="loginPassword" name="loginPassword" required />
+            <input type="password" id="loginPassword" name="loginPassword" required
+              value={password} onChange={(e) => setPassword(e.target.value)} />
 
             <button type="submit">Login</button>
           </fieldset>
@@ -57,7 +69,7 @@ export function Login() {
         </form>
 
         {/* Displays the logged-in user's name once authentication is implemented */}
-        <p id="userDisplay">Logged in as: <span id="userName">Guest</span></p>
+      <p id="userDisplay">Logged in as: <span id="userName">{userName || 'Guest'}</span></p>
       </section>
 
       <section>

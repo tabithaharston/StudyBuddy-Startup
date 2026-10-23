@@ -10,7 +10,6 @@ export function Session() {
   );
 
   const [rsvp, setRsvp] = React.useState('');
-
   function submitRsvp(e) {
     e.preventDefault();
     const userName = localStorage.getItem('userName');
@@ -25,6 +24,16 @@ export function Session() {
       { author: 'Jordan P.', text: 'I will bring the practice exam!', time: '2:15 PM' },
     ]
   );
+
+  const [newComment, setNewComment] = React.useState('');
+  function postComment(e) {
+    e.preventDefault();
+    const time = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    const newComments = [...comments, { author: localStorage.getItem('userName'), text: newComment, time }];
+    setComments(newComments);
+    localStorage.setItem('comments', JSON.stringify(newComments));
+    setNewComment('');
+  }
 
   return (
     <main>
@@ -90,9 +99,9 @@ export function Session() {
             <li key={i}><strong>{c.author}</strong> ({c.time}): {c.text}</li>
           ))}
         </ul>
-        <form>
-          <textarea rows={3}></textarea>
-          <button type="submit">Post</button>
+        <form onSubmit={postComment}>
+          <textarea rows={3} value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder="Write a comment..."></textarea>
+          <button type="submit" disabled={!newComment.trim()}>Post</button>
         </form>
       </section>
     </main>

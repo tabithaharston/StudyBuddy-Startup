@@ -129,7 +129,7 @@ export function Dashboard() {
         )}
       </section>
 
-      /* Bulletin Board */
+      {/* Bulletin Board */}
       <section>
         <h2>Bulletin Board</h2>
         {/* Shared study resources */}
@@ -139,10 +139,10 @@ export function Dashboard() {
             <li key={i}>{r.name} — uploaded by {r.uploader}</li>
           ))}
         </ul>
-        <form>
+        <form onSubmit={uploadResource}>
           <label htmlFor="resourceFile">Upload a resource:</label>
-          <input type="file" id="resourceFile" name="resourceFile" className="form-control" />
-          <button type="submit" className="btn btn-secondary">Upload</button>
+          <input type="file" id="resourceFile" name="resourceFile" className="form-control" onChange={(e) => setFileName(e.target.files[0] ? e.target.files[0].name : '')} />
+          <button type="submit" className="btn btn-secondary" disabled={!fileName}>Upload</button>
         </form>
       </section>
 

@@ -129,13 +129,15 @@ export function Dashboard() {
         )}
       </section>
 
+      /* Bulletin Board */
       <section>
         <h2>Bulletin Board</h2>
         {/* Shared study resources */}
         <p>Shared materials uploaded by students:</p>
         <ul>
-          <li>CS260_html_notes.pdf — uploaded by Jordan P.</li>
-          <li>Calc2_final_formulas.docx — uploaded by Sam R.</li>
+          {resources.map((r, i) => (
+            <li key={i}>{r.name} — uploaded by {r.uploader}</li>
+          ))}
         </ul>
         <form>
           <label htmlFor="resourceFile">Upload a resource:</label>

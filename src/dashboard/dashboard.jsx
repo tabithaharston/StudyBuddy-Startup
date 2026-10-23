@@ -67,6 +67,19 @@ export function Dashboard() {
   /* Live Updates */
   const [liveUpdates, setLiveUpdates] = React.useState([]);
 
+  // Simulate other students joining sessions every 5 seconds.
+  // Will be replaced with WebSocket messages later.
+  React.useEffect(() => {
+    const names = ['Lincoln R.', 'Darron H.', 'Jenny C.', 'Payton M.', 'Beckham H.', 'Lettie M.', 'Oscar O.', 'Tabitha H.'];
+    const interval = setInterval(() => {
+      const name = names[Math.floor(Math.random() * names.length)];
+      const session = sessions[Math.floor(Math.random() * sessions.length)];
+      setLiveUpdates((prev) => [`${name} joined ${session.course}`, ...prev].slice(0, 5));
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <main className="dashboard">
       <section className="wide">

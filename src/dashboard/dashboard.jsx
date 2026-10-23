@@ -3,6 +3,13 @@ import { NavLink } from 'react-router-dom';
 import './dashboard.css';
 
 export function Dashboard() {
+  const [sessions, setSessions] = React.useState(
+    JSON.parse(localStorage.getItem('sessions')) || [
+      { id: 1, course: 'CS 260 Midterm Review', date: '2026-10-26', time: '18:00', location: 'HBLL Room 3102' },
+      { id: 2, course: 'Calc 2 Problem Set', date: '2026-10-28', time: '16:00', location: 'Talmage 201' },
+      { id: 3, course: 'Biology Flashcard Party', date: '2026-10-29', time: '19:30', location: 'Widtsoe Lounge' },
+    ]
+  );
   return (
     <main className="dashboard">
       <section className="wide">
@@ -18,24 +25,14 @@ export function Dashboard() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><NavLink to="/session">CS 260 Midterm Review</NavLink></td>
-              <td>Sep 26, 2026</td>
-              <td>6:00 PM</td>
-              <td>HBLL Room 3102</td>
-            </tr>
-            <tr>
-              <td><NavLink to="/session">Calc 2 Problem Set</NavLink></td>
-              <td>Sep 28, 2026</td>
-              <td>4:00 PM</td>
-              <td>Talmage 201</td>
-            </tr>
-            <tr>
-              <td><NavLink to="/session">Biology Flashcard Party</NavLink></td>
-              <td>Sep 29, 2026</td>
-              <td>7:30 PM</td>
-              <td>Widtsoe Lounge</td>
-            </tr>
+            {sessions.map((s) => (
+              <tr key={s.id}>
+                <td><NavLink to="/session">{s.course}</NavLink></td>
+                <td>{s.date}</td>
+                <td>{s.time}</td>
+                <td>{s.location}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </section>

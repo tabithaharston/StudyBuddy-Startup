@@ -7,6 +7,21 @@ export function Login({ userName, onLogin, onLogout }) {
   const [fullName, setFullName] = React.useState('');
   const [role, setRole] = React.useState('student');
 
+  const [quote, setQuote] = React.useState('Loading quote...');
+
+  // Load a random quote when the page opens.
+  // This will be replaced with a fetch to the Quotable API later.
+  React.useEffect(() => {
+    const quotes = [
+      '"The secret of getting ahead is getting started." — Mark Twain',
+      '"It always seems impossible until it is done." — Nelson Mandela',
+      '"Learning never exhausts the mind." — Leonardo da Vinci',
+    ];
+    setTimeout(() => {
+      setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
+    }, 1000);
+  }, []);
+
   function handleLogin(e) {
     e.preventDefault();
     localStorage.setItem('userName', email);
@@ -85,7 +100,7 @@ export function Login({ userName, onLogin, onLogout }) {
         <h2>Motivational Quote</h2>
         {/* 3rd party service call placeholder: Quotable API */}
         <blockquote id="quoteBox">
-          "The secret of getting ahead is getting started." — Mark Twain
+          {quote}
         </blockquote>
         <p><small>Quote provided by the <a href="https://github.com/lukePeavey/quotable">Quotable API</a> (placeholder — will be fetched dynamically).</small></p>
       </section>

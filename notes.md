@@ -1,4 +1,14 @@
 "I love web programming"
+## Startup React P2: Reactivity
+- `useState` stores data. Calling the setter makes React re-render the page.
+- Controlled inputs use `value={x}` and `onChange={(e) => setX(e.target.value)}`.
+- `e.preventDefault()` stops a form from reloading the page.
+- Make a new array (`[...list, newItem]`) instead of changing the old one, or React won't re-render.
+- `.map()` builds a list of elements, and each one needs a unique `key`.
+- `.filter()` makes a new list without certain items (used for Join and RSVP).
+- `useEffect` with `[]` runs once when the component loads. Return a cleanup function to stop timers.
+- Lifting state up: `userName` lives in `App` so the nav can change when someone logs in.
+- JSX comments need curly braces: `{/* comment */}`.
 
 ## Simon React P2: Reactivity
 

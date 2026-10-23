@@ -40,18 +40,18 @@ export function Dashboard() {
       {/* Form for creating a new study session */}
       <section>
         <h2>Create a Study Session</h2>
-        <form>
+        <form onSubmit={createSession}>
           <label htmlFor="courseName">Course:</label>
-          <input type="text" id="courseName" name="courseName" className="form-control" placeholder="e.g. CS 260" required />
+          <input type="text" id="courseName" name="courseName" className="form-control" placeholder="e.g. CS 260" required value={course} onChange={(e) => setCourse(e.target.value)} />
 
           <label htmlFor="sessionDate">Date:</label>
-          <input type="date" id="sessionDate" name="sessionDate" className="form-control" required />
+          <input type="date" id="sessionDate" name="sessionDate" className="form-control" required value={date} onChange={(e) => setDate(e.target.value)} />
 
           <label htmlFor="sessionTime">Time:</label>
-          <input type="time" id="sessionTime" name="sessionTime" className="form-control" required />
+          <input type="time" id="sessionTime" name="sessionTime" className="form-control" required value={time} onChange={(e) => setTime(e.target.value)} />
 
           <label htmlFor="sessionLocation">Location:</label>
-          <input type="text" id="sessionLocation" name="sessionLocation" className="form-control" placeholder="e.g. HBLL Room 3102" />
+          <input type="text" id="sessionLocation" name="sessionLocation" className="form-control" placeholder="e.g. HBLL Room 3102" value={location} onChange={(e) => setLocation(e.target.value)} />
 
           <button type="submit" className="btn btn-primary">Create Session</button>
         </form>

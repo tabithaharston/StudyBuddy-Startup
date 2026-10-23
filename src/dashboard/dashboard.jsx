@@ -22,6 +22,7 @@ export function Dashboard() {
     const newSessions = [...sessions, newSession];
     setSessions(newSessions);
     localStorage.setItem('sessions', JSON.stringify(newSessions));
+    setLiveUpdates((prev) => [`You created ${course}`, ...prev].slice(0, 5));
     setCourse('');
     setDate('');
     setTime('');
@@ -40,6 +41,7 @@ export function Dashboard() {
     const newSessions = [...sessions, session];
     setSessions(newSessions);
     localStorage.setItem('sessions', JSON.stringify(newSessions));
+    setLiveUpdates((prev) => [`You joined ${session.course}`, ...prev].slice(0, 5));
 
     const newOpen = openSessions.filter((s) => s.id !== session.id);
     setOpenSessions(newOpen);

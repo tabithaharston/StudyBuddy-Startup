@@ -10,6 +10,24 @@ export function Dashboard() {
       { id: 3, course: 'Biology Flashcard Party', date: '2026-10-29', time: '19:30', location: 'Widtsoe Lounge' },
     ]
   );
+
+  const [course, setCourse] = React.useState('');
+  const [date, setDate] = React.useState('');
+  const [time, setTime] = React.useState('');
+  const [location, setLocation] = React.useState('');
+
+  function createSession(e) {
+    e.preventDefault();
+    const newSession = { id: Date.now(), course, date, time, location: location || 'TBD' };
+    const newSessions = [...sessions, newSession];
+    setSessions(newSessions);
+    localStorage.setItem('sessions', JSON.stringify(newSessions));
+    setCourse('');
+    setDate('');
+    setTime('');
+    setLocation('');
+  }
+
   return (
     <main className="dashboard">
       <section className="wide">

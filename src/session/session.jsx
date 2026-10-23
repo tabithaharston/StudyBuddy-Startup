@@ -2,6 +2,12 @@ import React from 'react';
 import './session.css';
 
 export function Session() {
+  const [participants, setParticipants] = React.useState(
+    JSON.parse(localStorage.getItem('participants')) || [
+      { name: 'Jordan P.', status: 'Going' },
+      { name: 'Sam R.', status: 'Not going' },
+    ]
+  );
   return (
     <main>
       <section>
@@ -48,14 +54,12 @@ export function Session() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Tabitha Harston</td>
-              <td>Going</td>
-            </tr>
-            <tr>
-              <td>Jordan P.</td>
-              <td>Going</td>
-            </tr>
+            {participants.map((p) => (
+              <tr key={p.name}>
+                <td>{p.name}</td>
+                <td>{p.status}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </section>

@@ -20,6 +20,12 @@ export function Session() {
     localStorage.setItem('participants', JSON.stringify(newParticipants));
   }
 
+  const [comments, setComments] = React.useState(
+    JSON.parse(localStorage.getItem('comments')) || [
+      { author: 'Jordan P.', text: 'I will bring the practice exam!', time: '2:15 PM' },
+    ]
+  );
+
   return (
     <main>
       <section>
@@ -79,7 +85,11 @@ export function Session() {
       <section>
         <h2>Comments</h2>
         {/* WebSocket placeholder: new comments will appear in real time */}
-        <p>New comments will show here in real time.</p>
+        <ul className="list-unstyled">
+          {comments.map((c, i) => (
+            <li key={i}><strong>{c.author}</strong> ({c.time}): {c.text}</li>
+          ))}
+        </ul>
         <form>
           <textarea rows={3}></textarea>
           <button type="submit">Post</button>

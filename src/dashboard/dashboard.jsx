@@ -46,6 +46,24 @@ export function Dashboard() {
     localStorage.setItem('openSessions', JSON.stringify(newOpen));
   }
 
+  /* !!Resource Management */
+  const [resources, setResources] = React.useState(
+    JSON.parse(localStorage.getItem('resources')) || [
+      { name: 'CS260_html_notes.pdf', uploader: 'Jordan P.' },
+      { name: 'Calc2_final_formulas.docx', uploader: 'Sam R.' },
+    ]
+  );
+  const [fileName, setFileName] = React.useState('');
+  /* Resource Upload */
+  function uploadResource(e) {
+    e.preventDefault();
+    const newResources = [...resources, { name: fileName, uploader: localStorage.getItem('userName') }];
+    setResources(newResources);
+    localStorage.setItem('resources', JSON.stringify(newResources));
+    setFileName('');
+    e.target.reset();
+  }
+
   return (
     <main className="dashboard">
       <section className="wide">

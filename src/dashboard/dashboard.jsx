@@ -37,15 +37,12 @@ export function Dashboard() {
     ]
   );
 
-  function joinSession(session) {
-    const newSessions = [...sessions, session];
-    setSessions(newSessions);
-    localStorage.setItem('sessions', JSON.stringify(newSessions));
-    setLiveUpdates((prev) => [`You joined ${session.course}`, ...prev].slice(0, 5));
-
-    const newOpen = openSessions.filter((s) => s.id !== session.id);
-    setOpenSessions(newOpen);
-    localStorage.setItem('openSessions', JSON.stringify(newOpen));
+  async function joinSession(session) {
+    const response = await fetch(`/api/study-sessions/${session.id}/join`, { method: 'post' });
+    if (response.ok) {
+      setLiveUpdates((prev) => [`You joined ${session.course}`, ...prev].slice(0, 5));
+      loadSessions();
+    }
   }
 
   /* !!Resource Management */
@@ -95,7 +92,7 @@ export function Dashboard() {
     <main className="dashboard">
       <section className="wide">
         <h2>Your Upcoming Study Sessions</h2>
-        {/* Database data placeholder: study sessions the user has joined */}
+        {error && <p className="text-danger">{error}</p>}
         <table className="table table-striped">
           <thead>
             <tr>

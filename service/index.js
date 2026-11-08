@@ -135,6 +135,14 @@ apiRouter.post('/study-sessions/:id/rsvp', verifyAuth, (req, res) => {
   res.send(session.participants);
 });
 
+// Post a comment
+apiRouter.post('/study-sessions/:id/comments', verifyAuth, (req, res) => {
+  const session = getSession(req.params.id);
+  if (!session) return res.status(404).send({ msg: 'Session not found' });
+  session.comments.push({ author: req.user.name, text: req.body.text, time: req.body.time });
+  res.send(session.comments);
+});
+
 // Helper functions:
 
 async function createUser(email, password, name, role) {

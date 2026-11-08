@@ -16,26 +16,22 @@ export function Dashboard() {
   const [time, setTime] = React.useState('');
   const [location, setLocation] = React.useState('');
 
-  function createSession(e) {
+  async function createSession(e) {
     e.preventDefault();
-    const newSession = { id: Date.now(), course, date, time, location: location || 'TBD' };
-    const newSessions = [...sessions, newSession];
-    setSessions(newSessions);
-    localStorage.setItem('sessions', JSON.stringify(newSessions));
-    setLiveUpdates((prev) => [`You created ${course}`, ...prev].slice(0, 5));
-    setCourse('');
-    setDate('');
-    setTime('');
-    setLocation('');
+    const response = await fetch('/api/study-sessions', {
+      method: 'post',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ course, date, time, location }),
+    });
+    if (response.ok) {
+      setLiveUpdates((prev) => [`You created ${course}`, ...prev].slice(0, 5));
+      loadSessions();
+      setCourse('');
+      setDate('');
+      setTime('');
+      setLocation('');
+    }
   }
-
-  const [openSessions, setOpenSessions] = React.useState(
-    JSON.parse(localStorage.getItem('openSessions')) || [
-      { id: 101, course: 'Chem 106 Lab Prep', date: '2026-10-30', time: '17:00', location: 'Benson 150' },
-      { id: 102, course: 'Stats 221 Homework Help', date: '2026-11-01', time: '15:00', location: 'TMCB 1170' },
-      { id: 103, course: 'English 251 Essay Workshop', date: '2026-11-02', time: '13:00', location: 'JFSB B192' },
-    ]
-  );
 
   async function joinSession(session) {
     const response = await fetch(`/api/study-sessions/${session.id}/join`, { method: 'post' });

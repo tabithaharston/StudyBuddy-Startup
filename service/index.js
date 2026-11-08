@@ -126,6 +126,15 @@ apiRouter.post('/study-sessions/:id/join', verifyAuth, (req, res) => {
   res.send(summary(session));
 });
 
+// RSVP Going / Not going
+apiRouter.post('/study-sessions/:id/rsvp', verifyAuth, (req, res) => {
+  const session = getSession(req.params.id);
+  if (!session) return res.status(404).send({ msg: 'Session not found' });
+  session.participants = session.participants.filter((p) => p.name !== req.user.name);
+  session.participants.push({ name: req.user.name, status: req.body.status });
+  res.send(session.participants);
+});
+
 // Helper functions:
 
 async function createUser(email, password, name, role) {

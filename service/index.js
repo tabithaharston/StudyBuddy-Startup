@@ -109,6 +109,13 @@ apiRouter.post('/study-sessions', verifyAuth, (req, res) => {
   res.send(summary(session));
 });
 
+// Get one session's details, participants, and comments
+apiRouter.get('/study-sessions/:id', verifyAuth, (req, res) => {
+  const session = getSession(req.params.id);
+  if (!session) return res.status(404).send({ msg: 'Session not found' });
+  res.send({ ...summary(session), participants: session.participants, comments: session.comments });
+});
+
 // Helper functions:
 
 async function createUser(email, password, name, role) {

@@ -3,12 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import './session.css';
 
 export function Session() {
-  const [participants, setParticipants] = React.useState(
-    JSON.parse(localStorage.getItem('participants')) || [
-      { name: 'Jordan P.', status: 'Going' },
-      { name: 'Sam R.', status: 'Not going' },
-    ]
-  );
+  const [participants, setParticipants] = React.useState([]);
 
   const [rsvp, setRsvp] = React.useState('');
   function submitRsvp(e) {

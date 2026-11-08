@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import './session.css';
 
 export function Session() {
@@ -35,10 +36,41 @@ export function Session() {
     setNewComment('');
   }
 
+  // Which session to show comes from the URL (?id=101)
+  const [searchParams] = useSearchParams();
+  const [sessionId, setSessionId] = React.useState(searchParams.get('id'));
+  const [session, setSession] = React.useState(null);
+  const [error, setError] = React.useState('');
+
+  // If no session was picked, show the first session I've joined
+  React.useEffect(() => {
+    if (sessionId) return;
+    fetch('/api/study-sessions')
+      .then((response) => (response.ok ? response.json() : Promise.reject()))
+      .then((data) => {
+        if (data.mine.length > 0) setSessionId(String(data.mine[0].id));
+        else setError("You haven't joined any study sessions yet.");
+      })
+      .catch(() => setError('Please log in to view study sessions.'));
+  }, [sessionId]);
+
+  // Load this session's details, participants, and comments from my backend
+  React.useEffect(() => {
+    if (!sessionId) return;
+    fetch(`/api/study-sessions/${sessionId}`)
+      .then((response) => (response.ok ? response.json() : Promise.reject()))
+      .then((data) => {
+        setSession(data);
+        setParticipants(data.participants);
+        setComments(data.comments);
+      })
+      .catch(() => setError('Could not load this study session.'));
+  }, [sessionId]);
+
   return (
     <main>
       <section>
-        <h2>Your Upcoming Study Sessions</h2>
+        <h2>{error || (session ? session.course : 'Loading study session...')}</h2>
         <img
           src="https://img.magnific.com/free-vector/watercolor-business-meeting_23-2147551752.jpg?semt=ais_hybrid&w=740&q=80"
           alt="Study group"

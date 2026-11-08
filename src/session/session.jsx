@@ -15,20 +15,21 @@ export function Session() {
     localStorage.setItem('participants', JSON.stringify(newParticipants));
   }
 
-  const [comments, setComments] = React.useState(
-    JSON.parse(localStorage.getItem('comments')) || [
-      { author: 'Jordan P.', text: 'I will bring the practice exam!', time: '2:15 PM' },
-    ]
-  );
+    const [comments, setComments] = React.useState([]);
 
   const [newComment, setNewComment] = React.useState('');
-  function postComment(e) {
+  async function postComment(e) {
     e.preventDefault();
     const time = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-    const newComments = [...comments, { author: localStorage.getItem('userName'), text: newComment, time }];
-    setComments(newComments);
-    localStorage.setItem('comments', JSON.stringify(newComments));
-    setNewComment('');
+    const response = await fetch(`/api/study-sessions/${sessionId}/comments`, {
+      method: 'post',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ text: newComment, time }),
+    });
+    if (response.ok) {
+      setComments(await response.json());
+      setNewComment('');
+    }
   }
 
   // Which session to show comes from the URL (?id=101)

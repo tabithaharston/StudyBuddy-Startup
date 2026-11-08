@@ -3,13 +3,27 @@ import { NavLink } from 'react-router-dom';
 import './dashboard.css';
 
 export function Dashboard() {
-  const [sessions, setSessions] = React.useState(
-    JSON.parse(localStorage.getItem('sessions')) || [
-      { id: 1, course: 'CS 260 Midterm Review', date: '2026-10-26', time: '18:00', location: 'HBLL Room 3102' },
-      { id: 2, course: 'Calc 2 Problem Set', date: '2026-10-28', time: '16:00', location: 'Talmage 201' },
-      { id: 3, course: 'Biology Flashcard Party', date: '2026-10-29', time: '19:30', location: 'Widtsoe Lounge' },
-    ]
-  );
+  const [sessions, setSessions] = React.useState([]);
+  const [openSessions, setOpenSessions] = React.useState([]);
+  const [error, setError] = React.useState('');
+
+  // Load my sessions and the open sessions from my backend
+  function loadSessions() {
+    fetch('/api/study-sessions')
+      .then((response) => {
+        if (!response.ok) throw new Error('Please log in again to see your sessions.');
+        return response.json();
+      })
+      .then((data) => {
+        setSessions(data.mine);
+        setOpenSessions(data.open);
+      })
+      .catch((err) => setError(err.message));
+  }
+
+  React.useEffect(() => {
+    loadSessions();
+  }, []);
 
   const [course, setCourse] = React.useState('');
   const [date, setDate] = React.useState('');

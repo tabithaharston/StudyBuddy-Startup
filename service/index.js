@@ -143,6 +143,16 @@ apiRouter.post('/study-sessions/:id/comments', verifyAuth, (req, res) => {
   res.send(session.comments);
 });
 
+// Bulletin board resources
+apiRouter.get('/resources', verifyAuth, (_req, res) => {
+  res.send(resources);
+});
+
+apiRouter.post('/resources', verifyAuth, (req, res) => {
+  resources.push({ name: req.body.name, uploader: req.user.name });
+  res.send(resources);
+});
+
 // Helper functions:
 
 async function createUser(email, password, name, role) {

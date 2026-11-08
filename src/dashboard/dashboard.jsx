@@ -49,13 +49,31 @@ export function Dashboard() {
   }
 
   /* !!Resource Management */
-  const [resources, setResources] = React.useState(
-    JSON.parse(localStorage.getItem('resources')) || [
-      { name: 'CS260_html_notes.pdf', uploader: 'Jordan P.' },
-      { name: 'Calc2_final_formulas.docx', uploader: 'Sam R.' },
-    ]
-  );
+  const [resources, setResources] = React.useState([]);
   const [fileName, setFileName] = React.useState('');
+
+  // Load the bulletin board from my backend
+  React.useEffect(() => {
+    fetch('/api/resources')
+      .then((response) => (response.ok ? response.json() : []))
+      .then((data) => setResources(data));
+  }, []);
+
+  /* Resource Upload (saves the file name to the server) */
+  async function uploadResource(e) {
+    e.preventDefault();
+    const response = await fetch('/api/resources', {
+      method: 'post',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ name: fileName }),
+    });
+    if (response.ok) {
+      setResources(await response.json());
+    }
+    setFileName('');
+    e.target.reset();
+  }
+
   /* Resource Upload */
   function uploadResource(e) {
     e.preventDefault();

@@ -10,9 +10,16 @@ export default function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
 
   function logout() {
-    localStorage.removeItem('userName');
-    setUserName('');
+    fetch('/api/auth/logout', { method: 'delete' })
+      .catch(() => {
+        // Logout failed. Assuming offline
+      })
+      .finally(() => {
+        localStorage.removeItem('userName');
+        setUserName('');
+      });
   }
+
   return (
     <BrowserRouter>
       <div className="body">

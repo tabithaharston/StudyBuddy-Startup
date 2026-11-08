@@ -8,15 +8,15 @@ const authCookieName = 'token';
 // Users are stored in memory for now (the database comes next deliverable)
 let users = [];
 let resources = [
-  { name: 'CS260_html_notes.pdf', uploader: 'Jordan P.' },
-  { name: 'Calc2_final_formulas.docx', uploader: 'Sam R.' },
+    { name: 'CS260_html_notes.pdf', uploader: 'Jordan P.' },
+    { name: 'Calc2_final_formulas.docx', uploader: 'Sam R.' },
 ];
 
 // Every session tracks who joined (attendees), RSVPs (participants), and comments
 let studySessions = [
-  { id: 101, course: 'Chem 106 Lab Prep', date: '2026-11-10', time: '17:00', location: 'Benson 150' },
-  { id: 102, course: 'Stats 221 Homework Help', date: '2026-11-11', time: '15:00', location: 'TMCB 1170' },
-  { id: 103, course: 'English 251 Essay Workshop', date: '2026-11-12', time: '13:00', location: 'JFSB B192' },
+    { id: 101, course: 'Chem 106 Lab Prep', date: '2026-11-10', time: '17:00', location: 'Benson 150' },
+    { id: 102, course: 'Stats 221 Homework Help', date: '2026-11-11', time: '15:00', location: 'TMCB 1170' },
+    { id: 103, course: 'English 251 Essay Workshop', date: '2026-11-12', time: '13:00', location: 'JFSB B192' },
 ].map((s) => ({ ...s, attendees: [], participants: [], comments: [] }));
 
 const app = express();
@@ -86,71 +86,71 @@ apiRouter.get('/user/me', verifyAuth, (req, res) => {
 
 // Get my sessions and the open sessions I can join
 apiRouter.get('/study-sessions', verifyAuth, (req, res) => {
-  const email = req.user.email;
-  res.send({
-    mine: studySessions.filter((s) => s.attendees.includes(email)).map(summary),
-    open: studySessions.filter((s) => !s.attendees.includes(email)).map(summary),
-  });
+    const email = req.user.email;
+    res.send({
+        mine: studySessions.filter((s) => s.attendees.includes(email)).map(summary),
+        open: studySessions.filter((s) => !s.attendees.includes(email)).map(summary),
+    });
 });
 
 // Create a session (the creator automatically joins it)
 apiRouter.post('/study-sessions', verifyAuth, (req, res) => {
-  const session = {
-    id: Date.now(),
-    course: req.body.course,
-    date: req.body.date,
-    time: req.body.time,
-    location: req.body.location || 'TBD',
-    attendees: [req.user.email],
-    participants: [{ name: req.user.name, status: 'Going' }],
-    comments: [],
-  };
-  studySessions.push(session);
-  res.send(summary(session));
+    const session = {
+        id: Date.now(),
+        course: req.body.course,
+        date: req.body.date,
+        time: req.body.time,
+        location: req.body.location || 'TBD',
+        attendees: [req.user.email],
+        participants: [{ name: req.user.name, status: 'Going' }],
+        comments: [],
+    };
+    studySessions.push(session);
+    res.send(summary(session));
 });
 
 // Get one session's details, participants, and comments
 apiRouter.get('/study-sessions/:id', verifyAuth, (req, res) => {
-  const session = getSession(req.params.id);
-  if (!session) return res.status(404).send({ msg: 'Session not found' });
-  res.send({ ...summary(session), participants: session.participants, comments: session.comments });
+    const session = getSession(req.params.id);
+    if (!session) return res.status(404).send({ msg: 'Session not found' });
+    res.send({ ...summary(session), participants: session.participants, comments: session.comments });
 });
 
 // Join a session
 apiRouter.post('/study-sessions/:id/join', verifyAuth, (req, res) => {
-  const session = getSession(req.params.id);
-  if (!session) return res.status(404).send({ msg: 'Session not found' });
-  if (!session.attendees.includes(req.user.email)) {
-    session.attendees.push(req.user.email);
-  }
-  res.send(summary(session));
+    const session = getSession(req.params.id);
+    if (!session) return res.status(404).send({ msg: 'Session not found' });
+    if (!session.attendees.includes(req.user.email)) {
+        session.attendees.push(req.user.email);
+    }
+    res.send(summary(session));
 });
 
 // RSVP Going / Not going
 apiRouter.post('/study-sessions/:id/rsvp', verifyAuth, (req, res) => {
-  const session = getSession(req.params.id);
-  if (!session) return res.status(404).send({ msg: 'Session not found' });
-  session.participants = session.participants.filter((p) => p.name !== req.user.name);
-  session.participants.push({ name: req.user.name, status: req.body.status });
-  res.send(session.participants);
+    const session = getSession(req.params.id);
+    if (!session) return res.status(404).send({ msg: 'Session not found' });
+    session.participants = session.participants.filter((p) => p.name !== req.user.name);
+    session.participants.push({ name: req.user.name, status: req.body.status });
+    res.send(session.participants);
 });
 
 // Post a comment
 apiRouter.post('/study-sessions/:id/comments', verifyAuth, (req, res) => {
-  const session = getSession(req.params.id);
-  if (!session) return res.status(404).send({ msg: 'Session not found' });
-  session.comments.push({ author: req.user.name, text: req.body.text, time: req.body.time });
-  res.send(session.comments);
+    const session = getSession(req.params.id);
+    if (!session) return res.status(404).send({ msg: 'Session not found' });
+    session.comments.push({ author: req.user.name, text: req.body.text, time: req.body.time });
+    res.send(session.comments);
 });
 
 // Bulletin board resources
 apiRouter.get('/resources', verifyAuth, (_req, res) => {
-  res.send(resources);
+    res.send(resources);
 });
 
 apiRouter.post('/resources', verifyAuth, (req, res) => {
-  resources.push({ name: req.body.name, uploader: req.user.name });
-  res.send(resources);
+    resources.push({ name: req.body.name, uploader: req.user.name });
+    res.send(resources);
 });
 
 // Helper functions:
@@ -182,19 +182,19 @@ function setAuthCookie(res, authToken) {
 }
 
 function getSession(id) {
-  return studySessions.find((s) => String(s.id) === String(id));
+    return studySessions.find((s) => String(s.id) === String(id));
 }
 
 // What the frontend sees for a session (hides attendee emails)
 function summary(s) {
-  return { id: s.id, course: s.course, date: s.date, time: s.time, location: s.location };
+    return { id: s.id, course: s.course, date: s.date, time: s.time, location: s.location };
 }
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+    console.log(`Listening on port ${port}`);
 });
 
 // Unknown paths get index.html so React Router can handle them
 app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
+    res.sendFile('index.html', { root: 'public' });
 });

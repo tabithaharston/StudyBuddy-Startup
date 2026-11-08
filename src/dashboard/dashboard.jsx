@@ -74,9 +74,10 @@ export function Dashboard() {
   React.useEffect(() => {
     const names = ['Lincoln R.', 'Darron H.', 'Jenny C.', 'Payton M.', 'Beckham H.', 'Lettie M.', 'Oscar O.', 'Tabitha H.'];
     const interval = setInterval(() => {
+      const courses = ['Chem 106 Lab Prep', 'Stats 221 Homework Help', 'English 251 Essay Workshop'];
       const name = names[Math.floor(Math.random() * names.length)];
-      const session = sessions[Math.floor(Math.random() * sessions.length)];
-      setLiveUpdates((prev) => [`${name} joined ${session.course}`, ...prev].slice(0, 5));
+      const course = courses[Math.floor(Math.random() * courses.length)];
+      setLiveUpdates((prev) => [`${name} joined ${course}`, ...prev].slice(0, 5));
     }, 5000);
 
     return () => clearInterval(interval);

@@ -112,6 +112,15 @@ function setAuthCookie(res, authToken) {
     });
 }
 
+function getSession(id) {
+  return studySessions.find((s) => String(s.id) === String(id));
+}
+
+// What the frontend sees for a session (hides attendee emails)
+function summary(s) {
+  return { id: s.id, course: s.course, date: s.date, time: s.time, location: s.location };
+}
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

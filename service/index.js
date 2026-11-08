@@ -93,7 +93,23 @@ apiRouter.get('/study-sessions', verifyAuth, (req, res) => {
   });
 });
 
-// ---------- Helper functions ----------
+// Create a session (the creator automatically joins it)
+apiRouter.post('/study-sessions', verifyAuth, (req, res) => {
+  const session = {
+    id: Date.now(),
+    course: req.body.course,
+    date: req.body.date,
+    time: req.body.time,
+    location: req.body.location || 'TBD',
+    attendees: [req.user.email],
+    participants: [{ name: req.user.name, status: 'Going' }],
+    comments: [],
+  };
+  studySessions.push(session);
+  res.send(summary(session));
+});
+
+// Helper functions:
 
 async function createUser(email, password, name, role) {
     const passwordHash = await bcrypt.hash(password, 10);

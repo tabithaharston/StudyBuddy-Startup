@@ -116,6 +116,16 @@ apiRouter.get('/study-sessions/:id', verifyAuth, (req, res) => {
   res.send({ ...summary(session), participants: session.participants, comments: session.comments });
 });
 
+// Join a session
+apiRouter.post('/study-sessions/:id/join', verifyAuth, (req, res) => {
+  const session = getSession(req.params.id);
+  if (!session) return res.status(404).send({ msg: 'Session not found' });
+  if (!session.attendees.includes(req.user.email)) {
+    session.attendees.push(req.user.email);
+  }
+  res.send(summary(session));
+});
+
 // Helper functions:
 
 async function createUser(email, password, name, role) {

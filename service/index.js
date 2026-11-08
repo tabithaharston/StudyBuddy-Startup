@@ -193,3 +193,8 @@ function summary(s) {
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+// Unknown paths get index.html so React Router can handle them
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+});

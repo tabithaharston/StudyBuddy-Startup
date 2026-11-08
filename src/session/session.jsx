@@ -6,16 +6,17 @@ export function Session() {
   const [participants, setParticipants] = React.useState([]);
 
   const [rsvp, setRsvp] = React.useState('');
-  function submitRsvp(e) {
+  async function submitRsvp(e) {
     e.preventDefault();
-    const userName = localStorage.getItem('userName');
-    const others = participants.filter((p) => p.name !== userName);
-    const newParticipants = [...others, { name: userName, status: rsvp }];
-    setParticipants(newParticipants);
-    localStorage.setItem('participants', JSON.stringify(newParticipants));
+    const response = await fetch(`/api/study-sessions/${sessionId}/rsvp`, {
+      method: 'post',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ status: rsvp }),
+    });
+    if (response.ok) setParticipants(await response.json());
   }
 
-    const [comments, setComments] = React.useState([]);
+  const [comments, setComments] = React.useState([]);
 
   const [newComment, setNewComment] = React.useState('');
   async function postComment(e) {

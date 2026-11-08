@@ -99,7 +99,7 @@ export function Dashboard() {
           <tbody>
             {sessions.map((s) => (
               <tr key={s.id}>
-                <td><NavLink to="/session">{s.course}</NavLink></td>
+                <td><NavLink to={`/session?id=${s.id}`}>{s.course}</NavLink></td>
                 <td>{s.date}</td>
                 <td>{s.time}</td>
                 <td>{s.location}</td>

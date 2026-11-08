@@ -8,18 +8,17 @@ export function Login({ userName, onLogin, onLogout }) {
   const [role, setRole] = React.useState('student');
 
   const [quote, setQuote] = React.useState('Loading quote...');
+    const [quoteAuthor, setQuoteAuthor] = React.useState('');
 
-  // Load a random quote when the page opens.
-  // This will be replaced with a fetch to the Quotable API later.
+    // Third-party service call: get a random quote when the page opens
   React.useEffect(() => {
-    const quotes = [
-      '"The secret of getting ahead is getting started." — Mark Twain',
-      '"It always seems impossible until it is done." — Nelson Mandela',
-      '"Learning never exhausts the mind." — Leonardo da Vinci',
-    ];
-    setTimeout(() => {
-      setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
-    }, 1000);
+    fetch('https://quote.cs260.click')
+      .then((response) => response.json())
+      .then((data) => {
+        setQuote(data.quote);
+        setQuoteAuthor(data.author);
+      })
+      .catch(() => setQuote('Could not load a quote right now.'));
   }, []);
 
   function handleLogin(e) {
@@ -98,11 +97,10 @@ export function Login({ userName, onLogin, onLogout }) {
 
       <section>
         <h2>Motivational Quote</h2>
-        {/* 3rd party service call placeholder: Quotable API */}
         <blockquote id="quoteBox">
-          {quote}
+          {quote} {quoteAuthor && <>— {quoteAuthor}</>}
         </blockquote>
-        <p><small>Quote provided by the <a href="https://github.com/lukePeavey/quotable">Quotable API</a> (placeholder — will be fetched dynamically).</small></p>
+        <p><small>Quote fetched live from the <a href="https://quote.cs260.click">quote.cs260.click</a> API.</small></p>
       </section>
     </main>
   );

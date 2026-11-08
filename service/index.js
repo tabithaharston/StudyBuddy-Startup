@@ -84,6 +84,15 @@ apiRouter.get('/user/me', verifyAuth, (req, res) => {
     res.send({ email: req.user.email, name: req.user.name, role: req.user.role });
 });
 
+// Get my sessions and the open sessions I can join
+apiRouter.get('/study-sessions', verifyAuth, (req, res) => {
+  const email = req.user.email;
+  res.send({
+    mine: studySessions.filter((s) => s.attendees.includes(email)).map(summary),
+    open: studySessions.filter((s) => !s.attendees.includes(email)).map(summary),
+  });
+});
+
 // ---------- Helper functions ----------
 
 async function createUser(email, password, name, role) {

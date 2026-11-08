@@ -5,12 +5,15 @@ export function Login({ userName, onLogin, onLogout }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [fullName, setFullName] = React.useState('');
+  const [signupEmail, setSignupEmail] = React.useState('');
+  const [signupPassword, setSignupPassword] = React.useState('');
+  const [displayError, setDisplayError] = React.useState('');
   const [role, setRole] = React.useState('student');
 
   const [quote, setQuote] = React.useState('Loading quote...');
-    const [quoteAuthor, setQuoteAuthor] = React.useState('');
+  const [quoteAuthor, setQuoteAuthor] = React.useState('');
 
-    // Third-party service call: get a random quote when the page opens
+  // Third-party service call: get a random quote when the page opens
   React.useEffect(() => {
     fetch('https://quote.cs260.click')
       .then((response) => response.json())
@@ -76,10 +79,12 @@ export function Login({ userName, onLogin, onLogout }) {
               value={fullName} onChange={(e) => setFullName(e.target.value)} />
 
             <label htmlFor="signupEmail">Email:</label>
-            <input type="email" id="signupEmail" name="signupEmail" required />
+            <input type="email" id="signupEmail" name="signupEmail" required
+              value={signupEmail} onChange={(e) => setSignupEmail(e.target.value)} />
 
             <label htmlFor="signupPassword">Password:</label>
-            <input type="password" id="signupPassword" name="signupPassword" required />
+            <input type="password" id="signupPassword" name="signupPassword" required
+              value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} />
 
             <label htmlFor="signupRole">I am a:</label>
             <select id="signupRole" name="signupRole" value={role} onChange={(e) => setRole(e.target.value)}>

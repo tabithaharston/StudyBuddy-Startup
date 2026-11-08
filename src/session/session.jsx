@@ -74,15 +74,15 @@ export function Session() {
           <tbody>
             <tr>
               <th>Date</th>
-              <td>Sep 26</td>
+              <td>{session?.date}</td>
             </tr>
             <tr>
               <th>Time</th>
-              <td>6:00 PM</td>
+              <td>{session?.time}</td>
             </tr>
             <tr>
               <th>Location</th>
-              <td>HBLL Room 3102</td>
+              <td>{session?.location}</td>
             </tr>
           </tbody>
         </table>

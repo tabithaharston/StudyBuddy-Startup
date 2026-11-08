@@ -1,4 +1,17 @@
 # StudyBuddy
+## 🚀 Startup Service deliverable
+StudyBuddy now has a Node.js/Express backend. Login, study sessions, RSVPs, comments, and the bulletin board use my own service instead of localStorage.
+
+- [x] **Simon Service deployed** - https://simon.studybuddy.click
+- [x] **Node.js and Express HTTP service** - `service/index.js` runs an Express server on port 4000.
+- [x] **Frontend served by Express static middleware** - `express.static('public')` serves the bundled React app.
+- [x] **Frontend calls a third-party service** - The home page fetches a random quote from `quote.cs260.click`.
+- [x] **Backend provides service endpoints** - Endpoints for auth, study sessions (get, create, join, RSVP, comment), and bulletin board resources, all under `/api`.
+- [x] **Frontend calls my service endpoints** - Login, Dashboard, and Session pages use `fetch` to call my endpoints.
+- [x] **Registration, login, logout, and a protected endpoint** - Logging in sets an auth cookie. `verifyAuth` middleware blocks session, RSVP, comment, and resource endpoints unless you're logged in.
+- [x] **BCrypt** - Passwords are hashed with `bcrypt.hash` and checked with `bcrypt.compare`.
+- [x] **Deployed** - https://startup.studybuddy.click
+
 ## 🚀 React Phase 2: Reactivity deliverable
 StudyBuddy now works in the browser. Features that need the backend, database, or WebSocket are mocked for now.
 - [x] **Simon React P2 deployed** - https://simon.studybuddy.click

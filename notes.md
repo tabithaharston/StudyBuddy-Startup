@@ -1,4 +1,30 @@
 "I love web programming"
+
+## Startup Service:
+### What I did
+- Added a `service` folder with an Express server on port 4000
+- Added register, login, and logout endpoints using bcrypt and an auth cookie
+- Added endpoints for study sessions, RSVPs, comments, and resources
+- Replaced localStorage with `fetch` calls to my backend
+- Fetched a real quote from `quote.cs260.click`
+- Switched to `deployService.sh`
+
+### Things I learned
+- The frontend and backend are two separate npm projects, so backend packages have to be installed inside `service`.
+- When testing locally I need two servers running: `node index.js` (port 4000) and `npm run dev` (port 5173).
+- `vite.config.js` forwards `/api` requests to my backend while debugging.
+- Putting `verifyAuth` before an endpoint makes it require a login.
+- My data is stored in memory, so it resets when the server restarts.
+- If SSH times out, my IP probably changed. Update the SSH rule in my EC2 security group to "My IP".
+
+### Commands I want/need to remember
+```
+node index.js &
+kill %1
+npm run dev
+./deployService.sh -k /c/Users/tabby/Documents/production.pem -h 100.57.108.57 -s startup
+```
+
 ## Startup React P2: Reactivity
 - `useState` stores data. Calling the setter makes React re-render the page.
 - Controlled inputs use `value={x}` and `onChange={(e) => setX(e.target.value)}`.

@@ -24,17 +24,32 @@ export function Login({ userName, onLogin, onLogout }) {
       .catch(() => setQuote('Could not load a quote right now.'));
   }, []);
 
+  // Calls my backend's login or create endpoint
+  async function loginOrCreate(endpoint, body) {
+    setDisplayError('');
+    const response = await fetch(endpoint, {
+      method: 'post',
+      body: JSON.stringify(body),
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    });
+    if (response.status === 200) {
+      const user = await response.json();
+      localStorage.setItem('userName', user.name);
+      onLogin(user.name);
+    } else {
+      const errBody = await response.json();
+      setDisplayError(`⚠ Error: ${errBody.msg}`);
+    }
+  }
+
   function handleLogin(e) {
     e.preventDefault();
-    localStorage.setItem('userName', email);
-    onLogin(email);
+    loginOrCreate('/api/auth/login', { email, password });
   }
 
   function handleCreate(e) {
     e.preventDefault();
-    localStorage.setItem('userName', fullName);
-    localStorage.setItem('role', role);
-    onLogin(fullName);
+    loginOrCreate('/api/auth/create', { name: fullName, email: signupEmail, password: signupPassword, role });
   }
 
   return (
@@ -54,7 +69,7 @@ export function Login({ userName, onLogin, onLogout }) {
 
       <section>
         <h2>Login / Create Account</h2>
-        {/* Authentication placeholder */}
+        {displayError && <p className="text-danger">{displayError}</p>}
         <form onSubmit={handleLogin}>
           <fieldset>
             <legend>Login</legend>

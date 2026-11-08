@@ -74,16 +74,6 @@ export function Dashboard() {
     e.target.reset();
   }
 
-  /* Resource Upload */
-  function uploadResource(e) {
-    e.preventDefault();
-    const newResources = [...resources, { name: fileName, uploader: localStorage.getItem('userName') }];
-    setResources(newResources);
-    localStorage.setItem('resources', JSON.stringify(newResources));
-    setFileName('');
-    e.target.reset();
-  }
-
   /* Live Updates */
   const [liveUpdates, setLiveUpdates] = React.useState([]);
 

@@ -7,7 +7,6 @@ const DB = require('./database.js');
 const authCookieName = 'token';
 
 // Users are stored in memory for now (the database comes next deliverable)
-let users = [];
 let resources = [
     { name: 'CS260_html_notes.pdf', uploader: 'Jordan P.' },
     { name: 'Calc2_final_formulas.docx', uploader: 'Sam R.' },

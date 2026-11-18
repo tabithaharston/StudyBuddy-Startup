@@ -6,6 +6,7 @@ const client = new MongoClient(url);
 const db = client.db('studybuddy');
 const userCollection = db.collection('user');
 const resourceCollection = db.collection('resource');
+const sessionCollection = db.collection('session');
 
 // Check the connection once when the server starts
 (async function testConnection() {
@@ -43,6 +44,23 @@ function getResources() {
 
 async function addResource(resource) {
     await resourceCollection.insertOne(resource);
+}
+
+// Study sessions:
+function getAllSessions() {
+    return sessionCollection.find().toArray();
+}
+
+function getSession(id) {
+    return sessionCollection.findOne({ id: Number(id) });
+}
+
+async function addSession(session) {
+    await sessionCollection.insertOne(session);
+}
+
+async function updateSession(session) {
+    await sessionCollection.replaceOne({ id: session.id }, session);
 }
 
 module.exports = { getUser, getUserByToken, addUser, updateUser, getResources, addResource };

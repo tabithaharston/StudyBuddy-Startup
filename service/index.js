@@ -135,10 +135,11 @@ apiRouter.post('/study-sessions/:id/rsvp', verifyAuth, async (req, res) => {
 });
 
 // Post a comment
-apiRouter.post('/study-sessions/:id/comments', verifyAuth, (req, res) => {
-    const session = getSession(req.params.id);
+apiRouter.post('/study-sessions/:id/comments', verifyAuth, async (req, res) => {
+    const session = await DB.getSession(req.params.id);
     if (!session) return res.status(404).send({ msg: 'Session not found' });
     session.comments.push({ author: req.user.name, text: req.body.text, time: req.body.time });
+    await DB.updateSession(session);
     res.send(session.comments);
 });
 

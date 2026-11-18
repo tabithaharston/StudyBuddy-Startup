@@ -171,7 +171,10 @@ async function createUser(email, password, name, role) {
 
 async function findUser(field, value) {
     if (!value) return null;
-    return users.find((u) => u[field] === value);
+    if (field === 'token') {
+        return DB.getUserByToken(value);
+    }
+    return DB.getUser(value);
 }
 
 function setAuthCookie(res, authToken) {

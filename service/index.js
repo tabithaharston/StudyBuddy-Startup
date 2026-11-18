@@ -125,11 +125,12 @@ apiRouter.post('/study-sessions/:id/join', verifyAuth, async (req, res) => {
 });
 
 // RSVP Going / Not going
-apiRouter.post('/study-sessions/:id/rsvp', verifyAuth, (req, res) => {
-    const session = getSession(req.params.id);
+apiRouter.post('/study-sessions/:id/rsvp', verifyAuth, async (req, res) => {
+    const session = await DB.getSession(req.params.id);
     if (!session) return res.status(404).send({ msg: 'Session not found' });
     session.participants = session.participants.filter((p) => p.name !== req.user.name);
     session.participants.push({ name: req.user.name, status: req.body.status });
+    await DB.updateSession(session);
     res.send(session.participants);
 });
 

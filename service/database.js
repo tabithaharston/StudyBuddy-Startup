@@ -8,22 +8,31 @@ const userCollection = db.collection('user');
 
 // Check the connection once when the server starts
 (async function testConnection() {
-  try {
-    await db.command({ ping: 1 });
-    console.log(`DB connected to ${config.hostname}`);
-  } catch (ex) {
-    console.log(`Unable to connect to database because ${ex.message}`);
-    process.exit(1);
-  }
+    try {
+        await db.command({ ping: 1 });
+        console.log(`DB connected to ${config.hostname}`);
+    } catch (ex) {
+        console.log(`Unable to connect to database because ${ex.message}`);
+        process.exit(1);
+    }
 })();
 
 // Users:
 function getUser(email) {
-  return userCollection.findOne({ email: email });
+    return userCollection.findOne({ email: email });
 }
 
 async function addUser(user) {
-  await userCollection.insertOne(user);
+    await userCollection.insertOne(user);
 }
 
-module.exports = { getUser, addUser };
+function getUserByToken(token) {
+    return userCollection.findOne({ token: token });
+}
+
+async function updateUser(user) {
+    // Replace the stored user with this updated version
+    await userCollection.replaceOne({ email: user.email }, user);
+}
+
+module.exports = { getUser, getUserByToken, addUser, updateUser };

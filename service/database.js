@@ -41,4 +41,8 @@ function getResources() {
     return resourceCollection.find().toArray();
 }
 
-module.exports = { getUser, getUserByToken, addUser, updateUser };
+async function addResource(resource) {
+    await resourceCollection.insertOne(resource);
+}
+
+module.exports = { getUser, getUserByToken, addUser, updateUser, getResources, addResource };

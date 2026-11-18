@@ -81,11 +81,12 @@ apiRouter.get('/user/me', verifyAuth, (req, res) => {
 });
 
 // Get my sessions and the open sessions I can join
-apiRouter.get('/study-sessions', verifyAuth, (req, res) => {
+apiRouter.get('/study-sessions', verifyAuth, async (req, res) => {
     const email = req.user.email;
+    const sessions = await DB.getAllSessions();
     res.send({
-        mine: studySessions.filter((s) => s.attendees.includes(email)).map(summary),
-        open: studySessions.filter((s) => !s.attendees.includes(email)).map(summary),
+        mine: sessions.filter((s) => s.attendees.includes(email)).map(summary),
+        open: sessions.filter((s) => !s.attendees.includes(email)).map(summary),
     });
 });
 

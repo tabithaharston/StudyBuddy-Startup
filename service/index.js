@@ -6,12 +6,6 @@ const DB = require('./database.js');
 
 const authCookieName = 'token';
 
-// Users are stored in memory for now (the database comes next deliverable)
-let resources = [
-    { name: 'CS260_html_notes.pdf', uploader: 'Jordan P.' },
-    { name: 'Calc2_final_formulas.docx', uploader: 'Sam R.' },
-];
-
 // Every session tracks who joined (attendees), RSVPs (participants), and comments
 let studySessions = [
     { id: 101, course: 'Chem 106 Lab Prep', date: '2026-11-10', time: '17:00', location: 'Benson 150' },
@@ -150,9 +144,9 @@ apiRouter.get('/resources', verifyAuth, async (_req, res) => {
     res.send(await DB.getResources());
 });
 
-apiRouter.post('/resources', verifyAuth, (req, res) => {
-    resources.push({ name: req.body.name, uploader: req.user.name });
-    res.send(resources);
+apiRouter.post('/resources', verifyAuth, async (req, res) => {
+    await DB.addResource({ name: req.body.name, uploader: req.user.name });
+    res.send(await DB.getResources());
 });
 
 // Helper functions:

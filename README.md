@@ -1,4 +1,11 @@
 # StudyBuddy
+## 🚀 Startup DB deliverable
+StudyBuddy now saves everything in MongoDB Atlas instead of memory, so data survives server restarts.
+- [x] **Simon DB deployed** - https://simon.studybuddy.click
+- [x] **Stores application data in MongoDB** - Study sessions (with attendees, RSVPs, and comments) and bulletin board resources are stored in the `session` and `resource` collections. `service/database.js` has all of the database functions, and default sessions are seeded when the collection is empty.
+- [x] **Stores and retrieves credentials in MongoDB** - Users are stored in the `user` collection with bcrypt-hashed passwords. Login saves a new auth token to the user's document, `verifyAuth` looks users up by token, and logout removes the token.
+- [x] **Deployed** - https://startup.studybuddy.click
+
 ## 🚀 Startup Service deliverable
 StudyBuddy now has a Node.js/Express backend. Login, study sessions, RSVPs, comments, and the bulletin board use my own service instead of localStorage.
 

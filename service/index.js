@@ -7,12 +7,13 @@ const DB = require('./database.js');
 const authCookieName = 'token';
 
 // Every session tracks who joined (attendees), RSVPs (participants), and comments
-let studySessions = [
+const defaultSessions = [
     { id: 101, course: 'Chem 106 Lab Prep', date: '2026-11-10', time: '17:00', location: 'Benson 150' },
     { id: 102, course: 'Stats 221 Homework Help', date: '2026-11-11', time: '15:00', location: 'TMCB 1170' },
     { id: 103, course: 'English 251 Essay Workshop', date: '2026-11-12', time: '13:00', location: 'JFSB B192' },
 ].map((s) => ({ ...s, attendees: [], participants: [], comments: [] }));
 
+DB.seedSessions(defaultSessions);
 const app = express();
 
 // The startup service must run on port 4000
@@ -182,10 +183,6 @@ function setAuthCookie(res, authToken) {
         httpOnly: true,
         sameSite: 'strict',
     });
-}
-
-function getSession(id) {
-    return studySessions.find((s) => String(s.id) === String(id));
 }
 
 // What the frontend sees for a session (hides attendee emails)

@@ -63,4 +63,22 @@ async function updateSession(session) {
     await sessionCollection.replaceOne({ id: session.id }, session);
 }
 
-module.exports = { getUser, getUserByToken, addUser, updateUser, getResources, addResource };
+async function seedSessions(sessions) {
+    if ((await sessionCollection.countDocuments()) === 0) {
+        await sessionCollection.insertMany(sessions);
+    }
+}
+
+module.exports = {
+    getUser,
+    getUserByToken,
+    addUser,
+    updateUser,
+    getResources,
+    addResource,
+    getAllSessions,
+    getSession,
+    addSession,
+    updateSession,
+    seedSessions,
+};

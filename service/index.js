@@ -91,7 +91,7 @@ apiRouter.get('/study-sessions', verifyAuth, async (req, res) => {
 });
 
 // Create a session (the creator automatically joins it)
-apiRouter.post('/study-sessions', verifyAuth, (req, res) => {
+apiRouter.post('/study-sessions', verifyAuth, async (req, res) => {
     const session = {
         id: Date.now(),
         course: req.body.course,
@@ -102,7 +102,7 @@ apiRouter.post('/study-sessions', verifyAuth, (req, res) => {
         participants: [{ name: req.user.name, status: 'Going' }],
         comments: [],
     };
-    studySessions.push(session);
+    await DB.addSession(session);
     res.send(summary(session));
 });
 

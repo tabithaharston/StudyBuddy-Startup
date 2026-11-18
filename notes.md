@@ -1,4 +1,13 @@
 "I love web programming"
+## Startup DB
+
+- `database.js` holds all the Mongo code. `index.js` just calls `DB.getUser()` etc.
+- `findOne({ email })` finds one document; `find().toArray()` gets them all.
+- URL ids are strings, so I use `Number(id)` before searching.
+- Endpoints that use the database need `async` and `await`.
+- `replaceOne` replaces the whole document, so deleted fields (like the token) really get removed.
+- Pattern for updates: get from Mongo → change in JS → save back.
+- dbConfig.json is in .gitignore so my password never goes to GitHub.
 
 ## Startup Service:
 ### What I did

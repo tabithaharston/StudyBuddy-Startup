@@ -107,18 +107,19 @@ apiRouter.post('/study-sessions', verifyAuth, async (req, res) => {
 });
 
 // Get one session's details, participants, and comments
-apiRouter.get('/study-sessions/:id', verifyAuth, (req, res) => {
-    const session = getSession(req.params.id);
+apiRouter.get('/study-sessions/:id', verifyAuth, async (req, res) => {
+    const session = await DB.getSession(req.params.id);
     if (!session) return res.status(404).send({ msg: 'Session not found' });
     res.send({ ...summary(session), participants: session.participants, comments: session.comments });
 });
 
 // Join a session
-apiRouter.post('/study-sessions/:id/join', verifyAuth, (req, res) => {
-    const session = getSession(req.params.id);
+apiRouter.post('/study-sessions/:id/join', verifyAuth, async (req, res) => {
+    const session = await DB.getSession(req.params.id);
     if (!session) return res.status(404).send({ msg: 'Session not found' });
     if (!session.attendees.includes(req.user.email)) {
         session.attendees.push(req.user.email);
+        await DB.updateSession(session);
     }
     res.send(summary(session));
 });

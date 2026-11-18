@@ -64,7 +64,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
         delete user.token;
-                await DB.updateUser(user);
+        await DB.updateUser(user);
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
@@ -146,8 +146,8 @@ apiRouter.post('/study-sessions/:id/comments', verifyAuth, (req, res) => {
 });
 
 // Bulletin board resources
-apiRouter.get('/resources', verifyAuth, (_req, res) => {
-    res.send(resources);
+apiRouter.get('/resources', verifyAuth, async (_req, res) => {
+    res.send(await DB.getResources());
 });
 
 apiRouter.post('/resources', verifyAuth, (req, res) => {
@@ -166,7 +166,7 @@ async function createUser(email, password, name, role) {
         role: role || 'student',
         token: uuid.v4(),
     };
-    await DB.addUser(user);;
+    await DB.addUser(user);
     return user;
 }
 

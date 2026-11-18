@@ -5,6 +5,7 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 const client = new MongoClient(url);
 const db = client.db('studybuddy');
 const userCollection = db.collection('user');
+const resourceCollection = db.collection('resource');
 
 // Check the connection once when the server starts
 (async function testConnection() {
@@ -33,6 +34,11 @@ function getUserByToken(token) {
 async function updateUser(user) {
     // Replace the stored user with this updated version
     await userCollection.replaceOne({ email: user.email }, user);
+}
+
+// Resources:
+function getResources() {
+    return resourceCollection.find().toArray();
 }
 
 module.exports = { getUser, getUserByToken, addUser, updateUser };

@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
+const DB = require('./database.js');
 
 const authCookieName = 'token';
 
@@ -164,7 +165,7 @@ async function createUser(email, password, name, role) {
         role: role || 'student',
         token: uuid.v4(),
     };
-    users.push(user);
+    await DB.addUser(user);;
     return user;
 }
 
